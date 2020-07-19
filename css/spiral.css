@@ -1,0 +1,106 @@
+/*
+UI IDs
+main container = #spiral-designs
+canvas = #spiral-designs-canvas
+all inputs container = #inputs-container
+
+#pen-color-inputs
+#pen-size-inputs
+#background-color-inputs
+#spiral-design-inputs
+
+all range slider containers = slide-container
+
+*/
+
+#spiral-designs {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 700px;
+    height: 448px;
+}
+
+#main-heading {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+#display,
+#edit {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+
+    width: 400px;
+    height: 444px;
+    border: #000000 2px solid;
+
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*************** Display Window *****************/
+canvas {
+    background-color: black;
+    width: 400px;
+    height: 400px;
+}
+
+
+/*************** Edit Window *****************/
+#edit {
+    padding: 0 10px;
+}
+
+#inputs-container {
+    width: 100%;
+}
+
+#pen-color-inputs,
+#pen-size-inputs,
+#background-color-inputs,
+#spiral-design-inputs {
+    border: #000000 2px solid;
+    border-radius: 5px;
+    margin: 0.25em;
+    padding: 0.25em;
+}
+
+.edit-heading {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    text-decoration: underline;
+}
+
+/* Slider Inputs */
+.slider-container {
+    display: flex;
+    display: -webkit-flex;
+
+    flex-direction: row;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    margin: 0.25em 0;
+}
+
+.slider-container > label {
+    margin-right: auto;
+}
+
+.slider {
+    width: 150px;
+    margin-left: auto;
+}
+
+
