@@ -11,9 +11,7 @@ class SpiralDesign {
     constructor() {
         this.ui = new UI();
 
-        this.canvasWidth = this.ui.canvas.width;
-        this.canvasHeight = this.ui.canvas.height;
-        this.offset = this.canvasWidth / 2; // Offset for plotting points
+        this.offset = this.ui.canvas.width / 2; // Offset for plotting points
         this.contex = this.ui.canvas.getContext("2d");
 
         this.controller = new Controller;
@@ -24,22 +22,22 @@ class SpiralDesign {
     /***************************** Animation Loop *****************************/
     loop = () => {
         let frameCount = 0;
-        const speed = 6;
+        const frameRateDivisor = 6; // Sets frame rate to 10fps.
 
         let animate = () => {
             frameCount++;
             requestAnimationFrame(animate);
-            if((frameCount % speed) === 0) {
+            if((frameCount % frameRateDivisor) === 0) {
                 this.clearCanvas();
-                this.renderSpiral(frameCount, speed);
+                this.renderSpiral(frameCount, frameRateDivisor);
             }
         }
         animate();
     };
 
     /***************************** Render Spiral *****************************/
-    renderSpiral = (rotation, speed) => {
-        this.spiral.createCoordinates(rotation, speed);
+    renderSpiral = (frameCount, speed) => {
+        this.spiral.createCoordinates(frameCount, speed);
         let l = this.spiral.coordinates.length;
 
         for(let i = 0; i < l; i++) {
@@ -52,12 +50,11 @@ class SpiralDesign {
 
             // Update background color
             this.ui.canvas.style.backgroundColor = `rgb(${this.controller.bgRed}, ${this.controller.bgGreen}, 
-                                                                                            ${this.controller.bgBlue})`;
+                ${this.controller.bgBlue})`;
 
             // Update spiral
             this.spiral.width = this.controller.spiralWidth;
             this.spiral.length = this.controller.spiralLength;
-            //this.spiral.spacing = this.controller.spacing;
 
             // Draw
             this.pen.position = this.spiral.coordinates[i];
@@ -70,7 +67,7 @@ class SpiralDesign {
     clearCanvas = () => {
         this.contex.globalCompositeOperation = 'destination-out';
         this.contex.fillStyle = "rgb(0, 0, 0)";
-        this.contex.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
+        this.contex.fillRect(0, 0, this.ui.canvas.width, this.ui.canvas.height);
         this.contex.globalCompositeOperation = 'source-over';
     };
 }
@@ -84,7 +81,6 @@ class Controller {
 
     /***************************** Update Controller *****************************/
     update = () => {
-        // Input variables
         this.penRed = document.getElementById("pen-red").value;
         this.penGreen = document.getElementById("pen-green").value;
         this.penBlue = document.getElementById("pen-blue").value;
@@ -98,7 +94,6 @@ class Controller {
 
         this.spiralWidth = document.getElementById("spiral-width").value;
         this.spiralLength = document.getElementById("spiral-length").value;
-        //this.spiralDensity = document.getElementById("spiral-density").value;
     }
 }
 
@@ -144,23 +139,23 @@ class Spiral {
         this.length = 2;
         this.spacing = 6; // Interval of theta increments
         this.offset = offset;
-        this.coordinates = [];
         this.halfCircle = 180; // Degrees
     }
 
     /************************ Calculate Spiral Coordinates ************************/
-    createCoordinates = (rotation, speed) => {
-        // Init variables
+    createCoordinates = (frameCount, frameRateDivisor) => {
         this.coordinates = [];
-        this.theta = 1;
+        this.theta = 1; // Degrees
 
         // Populate array with cartesian coordinates
         while(this.theta < this.length) {
             // Convert theta from degrees to radians
             let thetaRadians = (this.theta * (Math.PI / this.halfCircle));
 
-            let x = (this.width * thetaRadians) * (Math.cos(thetaRadians - (rotation / speed))) + this.offset;
-            let y = (this.width * thetaRadians) * (Math.sin(thetaRadians - (rotation / speed))) + this.offset;
+            let x = (this.width * thetaRadians) * (Math.cos(thetaRadians - (frameCount / frameRateDivisor))) +
+              this.offset;
+            let y = (this.width * thetaRadians) * (Math.sin(thetaRadians - (frameCount / frameRateDivisor))) +
+              this.offset;
 
             let coordinates = [this.roundDecimal(x, 4), this.roundDecimal(y, 4)];
             this.coordinates.push(coordinates);
@@ -172,6 +167,7 @@ class Spiral {
     /***************************** Round Decimals *****************************/
     roundDecimal = (num, exp) => {
         let precision = Math.pow(10, exp);
+
         return Math.round((num + Number.EPSILON) * precision) / precision;
     }
 }
@@ -315,12 +311,10 @@ class UI {
 
         let spiralWidth = this.renderRangeSlider("spiral-width", 1, 50, 10);
         let spiralLength = this.renderRangeSlider("spiral-length", 2, 3600, 1800);
-        //let spiralDensity = this.renderRangeSlider("spiral-density", 1, 20, 5);
 
         div.appendChild(heading);
         div.appendChild(spiralWidth);
         div.appendChild(spiralLength);
-        //div.appendChild(spiralDensity);
 
         return div
     }
