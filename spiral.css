@@ -1,17 +1,8 @@
-/*
-UI IDs
-main container = #spiral-designs
-canvas = #spiral-designs-canvas
-all inputs container = #inputs-container
 
-#pen-color-inputs
-#pen-size-inputs
-#background-color-inputs
-#spiral-design-inputs
-
-all range slider containers = slide-container
-
-*/
+/*********************************************************************************/
+/****************************** Spiral Designs v1 ********************************/
+/*********************************************************************************/
+/* https://github.com/jodyanna */
 
 #spiral-designs {
     display: flex;
