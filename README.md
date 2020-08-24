@@ -1,16 +1,6 @@
 # Spiral Designs 
 A simple web application for displaying an arithmetic spiral. 
 
-\*** WARNING *** \
-Some color combinations between the spiral and background can give a 
-strange strobe like effect and should not be viewed for any length of 
-time. If you have a history of seizures or something please be cautious 
-while using Spiral Designs. I watched a certain spiral for a minute or two
-and started getting a headache. We don't need to repeat the incident
-with that one Pokémon episode that gave a bunch of people seizures in the 
-90's. You know, the one with the Porygon. You have been warned.
-
-
 # Technologies
 - ES6 (JavaScript)
 - CSS 3
