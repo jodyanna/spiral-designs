@@ -149,14 +149,14 @@ class Spiral {
         // Populate array with cartesian coordinates
         while(this.theta < this.length) {
             // Convert theta from degrees to radians
-            let thetaRadians = (this.theta * (Math.PI / this.halfCircle));
+            const thetaRadians = (this.theta * (Math.PI / this.halfCircle));
 
-            let x = (this.width * thetaRadians) * (Math.cos(thetaRadians - (frameCount / frameRateDivisor))) +
+            const x = (this.width * thetaRadians) * (Math.cos(thetaRadians - (frameCount / frameRateDivisor))) +
               this.offset;
-            let y = (this.width * thetaRadians) * (Math.sin(thetaRadians - (frameCount / frameRateDivisor))) +
+            const y = (this.width * thetaRadians) * (Math.sin(thetaRadians - (frameCount / frameRateDivisor))) +
               this.offset;
 
-            let coordinates = [this.roundDecimal(x, 4), this.roundDecimal(y, 4)];
+            const coordinates = [this.roundDecimal(x, 4), this.roundDecimal(y, 4)];
             this.coordinates.push(coordinates);
 
             this.theta += this.spacing;
@@ -165,7 +165,7 @@ class Spiral {
 
     /***************************** Round Decimals *****************************/
     roundDecimal = (num, exp) => {
-        let precision = Math.pow(10, exp);
+        const precision = Math.pow(10, exp);
 
         return Math.round((num + Number.EPSILON) * precision) / precision;
     }
@@ -187,8 +187,8 @@ class UI {
 
     /***************************** Display *****************************/
     renderDisplay = () => {
-        let displayContainer = document.createElement("div");
-        let heading = this.renderText("Spiral Designs v1", "main-heading");
+        const displayContainer = document.createElement("div");
+        const heading = this.renderText("Spiral Designs v1", "main-heading");
 
         displayContainer.id = "display";
 
@@ -200,7 +200,7 @@ class UI {
 
     /***************************** Edit *****************************/
     renderEdit = () => {
-        let editContainer = document.createElement("div");
+        const editContainer = document.createElement("div");
         editContainer.id = "edit";
 
         editContainer.appendChild(this.inputs);
@@ -210,7 +210,7 @@ class UI {
 
     /***************************** Span Text *****************************/
     renderText = (text, id, className) => {
-        let span = document.createElement("span");
+        const span = document.createElement("span");
         span.id = id;
         span.className = className;
         span.innerHTML = text;
@@ -220,7 +220,7 @@ class UI {
 
     /***************************** Canvas *****************************/
     renderCanvas = () => {
-        let canvas = document.createElement("canvas");
+        const canvas = document.createElement("canvas");
         canvas.id = "spiral-design-canvas";
         canvas.width = 400;
         canvas.height = 400;
@@ -230,13 +230,13 @@ class UI {
 
     /***************************** All Inputs *****************************/
     renderInputs = () => {
-        let div = document.createElement("div");
+        const div = document.createElement("div");
         div.id = "inputs-container";
 
-        let penColorInputs = this.renderPenColorInputs();
-        let penSizeInputs = this.renderPenSizeInputs();
-        let bgColorInputs = this.renderBGColorInputs();
-        let spiralDesignInputs = this.renderSpiralDesignInputs();
+        const penColorInputs = this.renderPenColorInputs();
+        const penSizeInputs = this.renderPenSizeInputs();
+        const bgColorInputs = this.renderBGColorInputs();
+        const spiralDesignInputs = this.renderSpiralDesignInputs();
 
         div.appendChild(penColorInputs);
         div.appendChild(penSizeInputs);
@@ -248,14 +248,14 @@ class UI {
 
     /***************************** Pen Colors *****************************/
     renderPenColorInputs = () => {
-        let div = document.createElement("div");
+        const div = document.createElement("div");
         div.id = "pen-color-inputs";
 
-        let heading = this.renderText("Pen Color", "pen-color-heading", "edit-heading");
+        const heading = this.renderText("Pen Color", "pen-color-heading", "edit-heading");
 
-        let red = this.renderRangeSlider("pen-red", 0, 255, 255);
-        let green = this.renderRangeSlider("pen-green", 0, 255, 255);
-        let blue = this.renderRangeSlider("pen-blue", 0, 255, 255);
+        const red = this.renderRangeSlider("pen-red", 0, 255, 255);
+        const green = this.renderRangeSlider("pen-green", 0, 255, 255);
+        const blue = this.renderRangeSlider("pen-blue", 0, 255, 255);
 
         div.appendChild(heading);
         div.appendChild(red);
@@ -267,13 +267,13 @@ class UI {
 
     /***************************** Pen Size *****************************/
     renderPenSizeInputs = () => {
-        let div = document.createElement("div");
+        const div = document.createElement("div");
         div.id = "pen-size-inputs";
 
-        let heading = this.renderText("Pen Size", "pen-size-heading", "edit-heading");
+        const heading = this.renderText("Pen Size", "pen-size-heading", "edit-heading");
 
-        let penWidth = this.renderRangeSlider("pen-width", 0, 50, 25);
-        let penLength = this.renderRangeSlider("pen-length", 0, 50, 25);
+        const penWidth = this.renderRangeSlider("pen-width", 0, 50, 25);
+        const penLength = this.renderRangeSlider("pen-length", 0, 50, 25);
 
         div.appendChild(heading);
         div.appendChild(penWidth);
@@ -284,14 +284,14 @@ class UI {
 
     /***************************** Background Color *****************************/
     renderBGColorInputs = () => {
-        let div = document.createElement("div");
+        const div = document.createElement("div");
         div.id = "background-color-inputs";
 
-        let heading = this.renderText("Background Color", "background-color-heading", "edit-heading");
+        const heading = this.renderText("Background Color", "background-color-heading", "edit-heading");
 
-        let red = this.renderRangeSlider("background-red", 0, 255, 0);
-        let green = this.renderRangeSlider("background-green", 0, 255, 0);
-        let blue = this.renderRangeSlider("background-blue", 0, 255, 0);
+        const red = this.renderRangeSlider("background-red", 0, 255, 0);
+        const green = this.renderRangeSlider("background-green", 0, 255, 0);
+        const blue = this.renderRangeSlider("background-blue", 0, 255, 0);
 
         div.appendChild(heading);
         div.appendChild(red);
@@ -303,13 +303,13 @@ class UI {
 
     /***************************** Spiral Parameters *****************************/
     renderSpiralDesignInputs = () => {
-        let div = document.createElement("div");
+        const div = document.createElement("div");
         div.id = "spiral-design-inputs";
 
-        let heading = this.renderText("Spiral", "spiral-heading", "edit-heading");
+        const heading = this.renderText("Spiral", "spiral-heading", "edit-heading");
 
-        let spiralWidth = this.renderRangeSlider("spiral-width", 1, 50, 10);
-        let spiralLength = this.renderRangeSlider("spiral-length", 2, 3600, 1800);
+        const spiralWidth = this.renderRangeSlider("spiral-width", 1, 50, 10);
+        const spiralLength = this.renderRangeSlider("spiral-length", 2, 3600, 1800);
 
         div.appendChild(heading);
         div.appendChild(spiralWidth);
@@ -320,14 +320,14 @@ class UI {
 
     /***************************** Range Slider Input *****************************/
     renderRangeSlider = (name, minValue, maxValue, defaultValue) => {
-        let div = document.createElement("div");
+        const div = document.createElement("div");
         div.className = "slider-container";
 
-        let label = document.createElement("label");
+        const label = document.createElement("label");
         label.for = name;
         label.innerHTML = this.formatLabelName(name);
 
-        let slider = document.createElement("input");
+        const slider = document.createElement("input");
         slider.type = "range";
         slider.id = name;
         slider.className = "slider";
@@ -344,7 +344,7 @@ class UI {
 
     /***************************** Format Label Text *****************************/
     formatLabelName = (name) => {
-        let strings = name.split("-");
+        const strings = name.split("-");
 
         return strings[1].charAt(0).toUpperCase() + strings[1].slice(1) + " "
     }
@@ -380,7 +380,7 @@ const rAF = () => {
 
 /****************************** Event Listeners ********************************/
 window.addEventListener("load", function () {
-    let spiral = new SpiralDesign();
+    const spiral = new SpiralDesign();
 
     rAF();
     spiral.loop();
