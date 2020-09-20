@@ -377,11 +377,20 @@ const rAF = () => {
         };
 };
 
+/******************************** Check Canvas Support *********************************/
+const isCanvasSupport = () => {
+    return document.createElement("canvas").getContext
+}
+
 
 /****************************** Event Listeners ********************************/
 window.addEventListener("load", function () {
-    const spiral = new SpiralDesign();
-
-    rAF();
-    spiral.loop();
+    if (isCanvasSupport()) {
+        const spiral = new SpiralDesign();
+        alert("hi")
+        rAF();
+        spiral.loop();
+    } else {
+        alert("Canvas not supported, this app requires it.");
+    }
 });
