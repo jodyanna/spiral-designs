@@ -387,10 +387,10 @@ const isCanvasSupport = () => {
 window.addEventListener("load", function () {
     if (isCanvasSupport()) {
         const spiral = new SpiralDesign();
-        alert("hi")
+
         rAF();
         spiral.loop();
     } else {
-        alert("Canvas not supported, this app requires it.");
+        document.getElementsByTagName("body")[0].innerHTML = "Canvas not supported, this app requires it.";
     }
 });
