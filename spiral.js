@@ -30,11 +30,12 @@ class SpiralDesign {
     constructor() {
         this.canvas = this.createCanvas();
 
-        this.offset = this.canvas.width / 2; // Offset for plotting points
+        this.offsetWidth = this.canvas.width / 2; // Offset for plotting points
+        this.offsetHeight = this.canvas.height / 2;
         this.contex = this.canvas.getContext("2d");
 
         this.controller = new Controller;
-        this.spiral = new Spiral(this.offset);
+        this.spiral = new Spiral(this.offsetWidth, this.offsetHeight);
         this.pen = new Pen();
     }
 
@@ -164,11 +165,12 @@ class Pen {
 
 /********************************** Spiral Class ************************************/
 class Spiral {
-    constructor(offset) {
+    constructor(offsetWidth, offsetHeight) {
         this.width = 1;
         this.length = 2;
         this.spacing = 6; // Interval of theta increments
-        this.offset = offset;
+        this.offsetWidth = offsetWidth;
+        this.offsetHeight = offsetHeight;
         this.halfCircle = 180; // Degrees
     }
 
@@ -183,194 +185,15 @@ class Spiral {
             const thetaRadians = (this.theta * (Math.PI / this.halfCircle));
 
             const x = (this.width * thetaRadians) * (Math.cos(thetaRadians - (frameCount / frameRateDivisor))) +
-              this.offset;
+              this.offsetWidth;
             const y = (this.width * thetaRadians) * (Math.sin(thetaRadians - (frameCount / frameRateDivisor))) +
-              this.offset;
+              this.offsetHeight;
 
             const coordinates = [x.toFixed(4), y.toFixed(4)];
             this.coordinates.push(coordinates);
 
             this.theta += this.spacing;
         }
-    }
-}
-
-
-/********************************** UI Class ************************************/
-class UI {
-    constructor() {
-        this.mainContainer = document.getElementById("spiral-designs");
-        this.canvas = this.renderCanvas();
-        this.inputs = this.renderInputs();
-        this.displayContainer = this.renderDisplay();
-        this.editContainer = this.renderEdit();
-
-        this.mainContainer.appendChild(this.displayContainer);
-        this.mainContainer.appendChild(this.editContainer);
-    }
-
-    /***************************** Display *****************************/
-    renderDisplay = () => {
-        const displayContainer = document.createElement("div");
-        const heading = this.renderText("Spiral Designs v1", "main-heading");
-
-        displayContainer.id = "display";
-
-        displayContainer.appendChild(heading);
-        displayContainer.appendChild(this.canvas);
-
-        return displayContainer
-    }
-
-    /***************************** Edit *****************************/
-    renderEdit = () => {
-        const editContainer = document.createElement("div");
-        editContainer.id = "edit";
-
-        editContainer.appendChild(this.inputs);
-
-        return editContainer
-    }
-
-    /***************************** Span Text *****************************/
-    renderText = (text, id, className) => {
-        const span = document.createElement("span");
-        span.id = id;
-        span.className = className;
-        span.innerHTML = text;
-
-        return span
-    }
-
-    /***************************** Canvas *****************************/
-    renderCanvas = () => {
-        const canvas = document.createElement("canvas");
-        canvas.id = "spiral-design-canvas";
-        canvas.width = 400;
-        canvas.height = 400;
-
-        return canvas
-    }
-
-    /***************************** All Inputs *****************************/
-    renderInputs = () => {
-        const div = document.createElement("div");
-        div.id = "inputs-container";
-
-        const penColorInputs = this.renderPenColorInputs();
-        const penSizeInputs = this.renderPenSizeInputs();
-        const bgColorInputs = this.renderBGColorInputs();
-        const spiralDesignInputs = this.renderSpiralDesignInputs();
-
-        div.appendChild(penColorInputs);
-        div.appendChild(penSizeInputs);
-        div.appendChild(bgColorInputs);
-        div.appendChild(spiralDesignInputs);
-
-        return div
-    }
-
-    /***************************** Pen Colors *****************************/
-    renderPenColorInputs = () => {
-        const div = document.createElement("div");
-        div.id = "pen-color-inputs";
-
-        const heading = this.renderText("Pen Color", "pen-color-heading", "edit-heading");
-
-        const red = this.renderRangeSlider("pen-red", 0, 255, 255);
-        const green = this.renderRangeSlider("pen-green", 0, 255, 255);
-        const blue = this.renderRangeSlider("pen-blue", 0, 255, 255);
-
-        div.appendChild(heading);
-        div.appendChild(red);
-        div.appendChild(green);
-        div.appendChild(blue);
-
-        return div
-    }
-
-    /***************************** Pen Size *****************************/
-    renderPenSizeInputs = () => {
-        const div = document.createElement("div");
-        div.id = "pen-size-inputs";
-
-        const heading = this.renderText("Pen Size", "pen-size-heading", "edit-heading");
-
-        const penWidth = this.renderRangeSlider("pen-width", 0, 50, 25);
-        const penLength = this.renderRangeSlider("pen-length", 0, 50, 25);
-
-        div.appendChild(heading);
-        div.appendChild(penWidth);
-        div.appendChild(penLength);
-
-        return div
-    }
-
-    /***************************** Background Color *****************************/
-    renderBGColorInputs = () => {
-        const div = document.createElement("div");
-        div.id = "background-color-inputs";
-
-        const heading = this.renderText("Background Color", "background-color-heading", "edit-heading");
-
-        const red = this.renderRangeSlider("background-red", 0, 255, 0);
-        const green = this.renderRangeSlider("background-green", 0, 255, 0);
-        const blue = this.renderRangeSlider("background-blue", 0, 255, 0);
-
-        div.appendChild(heading);
-        div.appendChild(red);
-        div.appendChild(green);
-        div.appendChild(blue);
-
-        return div
-    }
-
-    /***************************** Spiral Parameters *****************************/
-    renderSpiralDesignInputs = () => {
-        const div = document.createElement("div");
-        div.id = "spiral-design-inputs";
-
-        const heading = this.renderText("Spiral", "spiral-heading", "edit-heading");
-
-        const spiralWidth = this.renderRangeSlider("spiral-width", 1, 50, 10);
-        const spiralLength = this.renderRangeSlider("spiral-length", 2, 3600, 1800);
-
-        div.appendChild(heading);
-        div.appendChild(spiralWidth);
-        div.appendChild(spiralLength);
-
-        return div
-    }
-
-    /***************************** Range Slider Input *****************************/
-    renderRangeSlider = (name, minValue, maxValue, defaultValue) => {
-        const div = document.createElement("div");
-        div.className = "slider-container";
-
-        const label = document.createElement("label");
-        label.for = name;
-        label.innerHTML = this.formatLabelName(name);
-
-        const slider = document.createElement("input");
-        slider.type = "range";
-        slider.id = name;
-        slider.className = "slider";
-        slider.name = name;
-        slider.min = minValue;
-        slider.max = maxValue;
-        slider.value = defaultValue;
-
-        div.appendChild(label);
-        div.appendChild(slider);
-
-        return div
-    }
-
-    /***************************** Format Label Text *****************************/
-    formatLabelName = (name) => {
-        const strings = name.split("-");
-
-        return strings[1].charAt(0).toUpperCase() + strings[1].slice(1) + " "
     }
 }
 
