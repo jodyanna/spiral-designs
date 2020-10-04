@@ -1,6 +1,26 @@
 
+function getWidth() {
+    return Math.max(
+      document.body.scrollWidth,
+      document.documentElement.scrollWidth,
+      document.body.offsetWidth,
+      document.documentElement.offsetWidth,
+      document.documentElement.clientWidth
+    );
+}
+
+function getHeight() {
+    return Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight,
+      document.documentElement.clientHeight
+    );
+}
+
 /*********************************************************************************/
-/****************************** Spiral Designs v1 ********************************/
+/****************************** Spiral Designs v2 ********************************/
 /*********************************************************************************/
 // https://github.com/jodyanna
 
@@ -8,14 +28,25 @@
 /****************************** Main Application ********************************/
 class SpiralDesign {
     constructor() {
-        this.ui = new UI();
+        this.canvas = this.createCanvas();
 
-        this.offset = this.ui.canvas.width / 2; // Offset for plotting points
-        this.contex = this.ui.canvas.getContext("2d");
+        this.offset = this.canvas.width / 2; // Offset for plotting points
+        this.contex = this.canvas.getContext("2d");
 
         this.controller = new Controller;
         this.spiral = new Spiral(this.offset);
         this.pen = new Pen();
+    }
+
+    createCanvas = () => {
+        const div = document.getElementById("spiral-designs");
+        const canvas = document.createElement("canvas");
+        canvas.id = "spiral-design-canvas";
+        canvas.width = getWidth();
+        canvas.height = getHeight();
+        div.appendChild(canvas);
+
+        return canvas
     }
 
     /***************************** Animation Loop *****************************/
@@ -48,7 +79,7 @@ class SpiralDesign {
             this.pen.size = [this.controller.penWidth, this.controller.penLength];
 
             // Update background color
-            this.ui.canvas.style.backgroundColor = `rgb(${this.controller.bgRed}, ${this.controller.bgGreen}, 
+            this.canvas.style.backgroundColor = `rgb(${this.controller.bgRed}, ${this.controller.bgGreen}, 
                 ${this.controller.bgBlue})`;
 
             // Update spiral
@@ -66,7 +97,7 @@ class SpiralDesign {
     clearCanvas = () => {
         this.contex.globalCompositeOperation = 'destination-out';
         this.contex.fillStyle = "rgb(0, 0, 0)";
-        this.contex.fillRect(0, 0, this.ui.canvas.width, this.ui.canvas.height);
+        this.contex.fillRect(0, 0, this.canvas.width, this.canvas.height);
         this.contex.globalCompositeOperation = 'source-over';
     };
 }
@@ -80,16 +111,16 @@ class Controller {
 
     /***************************** Update Controller *****************************/
     update = () => {
-        this.penRed = document.getElementById("pen-red").value;
-        this.penGreen = document.getElementById("pen-green").value;
-        this.penBlue = document.getElementById("pen-blue").value;
+        this.penRed = document.getElementById("spiral-red").value;
+        this.penGreen = document.getElementById("spiral-green").value;
+        this.penBlue = document.getElementById("spiral-blue").value;
 
-        this.penWidth = document.getElementById("pen-width").value;
-        this.penLength = document.getElementById("pen-length").value;
+        this.penWidth = document.getElementById("point-width").value;
+        this.penLength = document.getElementById("point-length").value;
 
-        this.bgRed = document.getElementById("background-red").value;
-        this.bgGreen = document.getElementById("background-green").value;
-        this.bgBlue = document.getElementById("background-blue").value;
+        this.bgRed = document.getElementById("bg-red").value;
+        this.bgGreen = document.getElementById("bg-green").value;
+        this.bgBlue = document.getElementById("bg-blue").value;
 
         this.spiralWidth = document.getElementById("spiral-width").value;
         this.spiralLength = document.getElementById("spiral-length").value;
@@ -156,18 +187,11 @@ class Spiral {
             const y = (this.width * thetaRadians) * (Math.sin(thetaRadians - (frameCount / frameRateDivisor))) +
               this.offset;
 
-            const coordinates = [this.roundDecimal(x, 4), this.roundDecimal(y, 4)];
+            const coordinates = [x.toFixed(4), y.toFixed(4)];
             this.coordinates.push(coordinates);
 
             this.theta += this.spacing;
         }
-    }
-
-    /***************************** Round Decimals *****************************/
-    roundDecimal = (num, exp) => {
-        const precision = Math.pow(10, exp);
-
-        return Math.round((num + Number.EPSILON) * precision) / precision;
     }
 }
 
