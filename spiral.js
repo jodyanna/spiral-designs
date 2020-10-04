@@ -1,24 +1,4 @@
 
-function getWidth() {
-    return Math.max(
-      document.body.scrollWidth,
-      document.documentElement.scrollWidth,
-      document.body.offsetWidth,
-      document.documentElement.offsetWidth,
-      document.documentElement.clientWidth
-    );
-}
-
-function getHeight() {
-    return Math.max(
-      document.body.scrollHeight,
-      document.documentElement.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.offsetHeight,
-      document.documentElement.clientHeight
-    );
-}
-
 /*********************************************************************************/
 /****************************** Spiral Designs v2 ********************************/
 /*********************************************************************************/
@@ -30,7 +10,7 @@ class SpiralDesign {
     constructor() {
         this.canvas = this.createCanvas();
 
-        this.offsetWidth = this.canvas.width / 2; // Offset for plotting points
+        this.offsetWidth = (this.canvas.width / 2) - document.getElementById("toolbar-buttons").offsetWidth;
         this.offsetHeight = this.canvas.height / 2;
         this.contex = this.canvas.getContext("2d");
 
@@ -43,8 +23,8 @@ class SpiralDesign {
         const div = document.getElementById("spiral-designs");
         const canvas = document.createElement("canvas");
         canvas.id = "spiral-design-canvas";
-        canvas.width = getWidth();
-        canvas.height = getHeight();
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
         div.appendChild(canvas);
 
         return canvas

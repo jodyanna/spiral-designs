@@ -4,6 +4,8 @@
 /*********************************************************************************/
 
 html, body {
+    overflow: hidden;
+
     width: 100%;
     height: 100%;
 
@@ -23,34 +25,94 @@ html, body {
     height: 100%;
 }
 
-.inputs {
-    position: sticky;
-    top: 5px;
 
-    float: right;
+.toolbar-horizontal {
+
 }
 
-/* Slider Inputs */
-.slider-container {
+.toolbar-buttons {
+    position: absolute;
+    top: 0;
+    right: 0;
+
     display: flex;
     display: -webkit-flex;
 
-    flex-direction: row;
-
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
 
-    width: 100%;
+    width: 64px;
+    height: 100%;
+
+    padding: 0;
+    margin: 0;
+
+    background-color: white;
+}
+
+.toolbar-sliders {
+    position: absolute;
+    top: 0;
+    right: 64px;
+
+    display: flex;
+    display: -webkit-flex;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 148px;
+    height: 100%;
+
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+}
+
+.button {
+    width: 48px;
+    height: 48px;
+
+    margin: 0.5em 0;
+    padding: 0;
+}
+
+.inputs {
+    display: none;
+}
+
+
+
+
+
+
+/* Slider Inputs */
+.input-container {
+    width: 64px;
+    height: 64px;
+
     margin: 0.25em 0;
 }
 
-.slider-container > label {
-    margin-right: auto;
+.slider-container {
+    background-color: teal;
 }
 
 .slider {
-    width: 150px;
-    margin-left: auto;
+    position: relative;
+
+    width: 148px;
+    height: 48px;
+}
+
+/* Hide, Show Elements */
+.visible {
+    display: block;
+}
+.invisible {
+    display: none;
 }
 
 
