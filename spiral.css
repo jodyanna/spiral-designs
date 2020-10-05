@@ -26,12 +26,29 @@ html, body {
 }
 
 
-.toolbar-horizontal {
-
+h2, h3 {
+    margin: 0.5em 1em;
+    padding: 0;
 }
 
-.toolbar-buttons {
-    position: absolute;
+.toolbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 4;
+
+    width: 200px;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+.toolbar-menu {
+    overflow: auto;
+
+    position: fixed;
     top: 0;
     right: 0;
 
@@ -42,50 +59,18 @@ html, body {
     align-items: center;
     justify-content: flex-start;
 
-    width: 64px;
+    width: 230px;
     height: 100%;
 
     padding: 0;
     margin: 0;
 
-    background-color: white;
+    color: white;
+    background-color: black;
+
+    animation-duration: 1s;
+
 }
-
-.toolbar-sliders {
-    position: absolute;
-    top: 0;
-    right: 64px;
-
-    display: flex;
-    display: -webkit-flex;
-
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-
-    width: 148px;
-    height: 100%;
-
-    padding: 0;
-    margin: 0;
-    background-color: transparent;
-}
-
-.button {
-    width: 48px;
-    height: 48px;
-
-    margin: 0.5em 0;
-    padding: 0;
-}
-
-.inputs {
-    display: none;
-}
-
-
-
-
 
 
 /* Slider Inputs */
@@ -97,22 +82,22 @@ html, body {
 }
 
 .slider-container {
-    background-color: teal;
+    background-color: palevioletred;
 }
 
 .slider {
     position: relative;
 
     width: 148px;
-    height: 48px;
 }
 
 /* Hide, Show Elements */
 .visible {
-    display: block;
+    opacity: 1;
+    transition: opacity 500ms;
 }
 .invisible {
-    display: none;
+    opacity: 0;
+    transition: opacity 500ms;
 }
-
 

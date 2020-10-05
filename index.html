@@ -8,103 +8,82 @@
 <body>
     <div id="spiral-designs"></div>
 
-    <div class="toolbar">
-        <div class="toolbar-buttons" id="toolbar-buttons">
-            <!-- Point Width, Length -->
-            <button class="button" onclick="showInput('point-width-bar')">
-                <label for="point-width"></label>
-            </button>
-            <button class="button" onclick="showInput('point-length-bar')">
-                <label for="point-length"></label>
-            </button>
+    <div class="toolbar" id="toolbar">
+        <div class="toolbar-menu invisible" id="toolbar-menu">
+            <h2>Spiral</h2>
             <!-- Spiral Red, Green, Blue -->
-            <button class="button" onclick="showInput('spiral-red-bar')">
-                <label for="spiral-red"></label>
-            </button>
-            <button class="button" onclick="showInput('spiral-green-bar')">
-                <label for="spiral-green"></label>
-            </button>
-            <button class="button" onclick="showInput('spiral-blue-bar')">
-                <label for="spiral-blue"></label>
-            </button>
-            <!-- Spiral Width, Length -->
-            <button class="button" onclick="showInput('spiral-width-bar')">
-                <label for="spiral-width"></label>
-            </button>
-            <button class="button" onclick="showInput('spiral-length-bar')">
-                <label for="spiral-length"></label>
-            </button>
-            <!-- Background Red, Green, Blue -->
-            <button class="button" onclick="showInput('bg-red-bar')">
-                <label for="bg-red"></label>
-            </button>
-            <button class="button" onclick="showInput('bg-green-bar')">
-                <label for="bg-green"></label>
-            </button>
-            <button class="button" onclick="showInput('bg-blue-bar')">
-                <label for="bg-blue"></label>
-            </button>
-
-        </div>
-
-        <div class="toolbar-sliders">
-            <!-- Point Width, Length -->
-            <div class="slider-container invisible" id="point-width-bar">
-                <input class="slider" id="point-width" name="point-width" type="range" min="1"  max="50" value="25"  >
-            </div>
-            <div class="slider-container invisible" id="point-length-bar">
-                <input class="slider" id="point-length" name="point-length" type="range" min="1"  max="50" value="25"  >
-            </div>
-            <!-- Spiral Red, Green, Blue -->
-            <div class="slider-container invisible" id="spiral-red-bar">
-                <input class="slider" id="spiral-red" name="spiral-red" type="range" min="0"  max="255" value="0"  >
-            </div>
-            <div class="slider-container invisible" id="spiral-green-bar">
-                <input class="slider" id="spiral-green" name="spiral-green" type="range" min="0"  max="255" value="255"  >
-            </div>
-            <div class="slider-container invisible" id="spiral-blue-bar">
-                <input class="slider" id="spiral-blue" name="spiral-blue" type="range" min="0"  max="255" value="0"  >
+            <div class="spiral-color">
+                <h3>RGB Color</h3>
+                <div class="slider-container" id="spiral-red-bar">
+                    <label for="spiral-red">Red</label>
+                    <input class="slider" id="spiral-red" name="spiral-red" type="range" min="0"  max="255" value="0"  >
+                </div>
+                <div class="slider-container" id="spiral-green-bar">
+                    <label for="spiral-green">Green</label>
+                    <input class="slider" id="spiral-green" name="spiral-green" type="range" min="0"  max="255" value="255"  >
+                </div>
+                <div class="slider-container" id="spiral-blue-bar">
+                    <label for="spiral-blue">Blue</label>
+                    <input class="slider" id="spiral-blue" name="spiral-blue" type="range" min="0"  max="255" value="0"  >
+                </div>
             </div>
             <!-- Spiral Width, Length -->
-            <div class="slider-container invisible" id="spiral-width-bar">
-                <input class="slider" id="spiral-width" name="spiral-width" type="range" min="1"  max="50" value="10"  >
+            <div class="spiral-dimensions">
+                <h3>Dimensions</h3>
+                <div class="slider-container" id="spiral-width-bar">
+                    <label for="spiral-width">Width</label>
+                    <input class="slider" id="spiral-width" name="spiral-width" type="range" min="1"  max="50" value="10"  >
+                </div>
+                <div class="slider-container" id="spiral-length-bar">
+                    <label for="spiral-length">Length</label>
+                    <input class="slider" id="spiral-length" name="spiral-length" type="range" min="2"  max="3600" value="3600"  >
+                </div>
             </div>
-            <div class="slider-container invisible" id="spiral-length-bar">
-                <input class="slider" id="spiral-length" name="spiral-length" type="range" min="2"  max="3600" value="3600"  >
+
+            <h2>Point</h2>
+            <!-- Point Width, Length -->
+            <div class="point-dimensions">
+                <h3>Dimensions</h3>
+                <div class="slider-container" id="point-width-bar">
+                    <label for="point-width">Width</label>
+                    <input class="slider" id="point-width" name="point-width" type="range" min="1"  max="50" value="25"  >
+                </div>
+                <div class="slider-container" id="point-length-bar">
+                    <label for="point-length">Length</label>
+                    <input class="slider" id="point-length" name="point-length" type="range" min="1"  max="50" value="25"  >
+                </div>
             </div>
+
+            <h2>Background</h2>
             <!-- Background Red, Green, Blue -->
-            <div class="slider-container invisible" id="bg-red-bar">
-                <input class="slider" id="bg-red" name="bg-red" type="range" min="0"  max="255" value="0"  >
+            <div class="bg-color">
+                <h3>RGB Color</h3>
+                <div class="slider-container" id="bg-red-bar">
+                    <label for="bg-red">Red</label>
+                    <input class="slider" id="bg-red" name="bg-red" type="range" min="0"  max="255" value="0"  >
+                </div>
+                <div class="slider-container" id="bg-green-bar">
+                    <label for="bg-green">Green</label>
+                    <input class="slider" id="bg-green" name="bg-green" type="range" min="0"  max="255" value="0"  >
+                </div>
+                <div class="slider-container" id="bg-blue-bar">
+                    <label for="bg-blue">Blue</label>
+                    <input class="slider" id="bg-blue" name="bg-blue" type="range" min="0"  max="255" value="0"  >
+                </div>
             </div>
-            <div class="slider-container invisible" id="bg-green-bar">
-                <input class="slider" id="bg-green" name="bg-green" type="range" min="0"  max="255" value="0"  >
-            </div>
-            <div class="slider-container invisible" id="bg-blue-bar">
-                <input class="slider" id="bg-blue" name="bg-blue" type="range" min="0"  max="255" value="0"  >
-            </div>
-
         </div>
-
-
     </div>
 
-    <div class="inputs">
-
-
-
-
-
-
-
-
-
-    </div>
 
     <script src="spiral.js"></script>
     <script>
-        const showInput = id => {
-            document.getElementById(id).classList.toggle("invisible");
+        const toggleMenu = () => {
+            document.getElementById("toolbar-menu").classList.toggle("invisible");
+            document.getElementById("toolbar-menu").classList.toggle("visible");
         }
+
+        document.getElementById("toolbar").addEventListener("mouseenter", toggleMenu);
+        document.getElementById("toolbar").addEventListener("mouseleave", toggleMenu);
     </script>
 </body>
 </html>

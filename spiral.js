@@ -9,8 +9,9 @@
 class SpiralDesign {
     constructor() {
         this.canvas = this.createCanvas();
+        this.toolbarMenu = document.getElementById("toolbar-menu");
 
-        this.offsetWidth = (this.canvas.width / 2) - document.getElementById("toolbar-buttons").offsetWidth;
+        this.offsetWidth = (this.canvas.width / 2);
         this.offsetHeight = this.canvas.height / 2;
         this.contex = this.canvas.getContext("2d");
 
@@ -19,6 +20,7 @@ class SpiralDesign {
         this.pen = new Pen();
     }
 
+    /***************************** Create Canvas *****************************/
     createCanvas = () => {
         const div = document.getElementById("spiral-designs");
         const canvas = document.createElement("canvas");
@@ -59,8 +61,10 @@ class SpiralDesign {
             this.pen.rgb = [this.controller.penRed, this.controller.penGreen, this.controller.penBlue];
             this.pen.size = [this.controller.penWidth, this.controller.penLength];
 
-            // Update background color
+            // Update background colors
             this.canvas.style.backgroundColor = `rgb(${this.controller.bgRed}, ${this.controller.bgGreen}, 
+                ${this.controller.bgBlue})`;
+            this.toolbarMenu.style.backgroundColor = `rgb(${this.controller.bgRed}, ${this.controller.bgGreen}, 
                 ${this.controller.bgBlue})`;
 
             // Update spiral
@@ -203,6 +207,7 @@ const rAF = () => {
             clearTimeout(id);
         };
 };
+
 
 /******************************** Check Canvas Support *********************************/
 const isCanvasSupport = () => {
