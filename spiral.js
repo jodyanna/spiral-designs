@@ -60,6 +60,8 @@ class SpiralDesign {
             // Update pen
             this.pen.rgb = [this.controller.penRed, this.controller.penGreen, this.controller.penBlue];
             this.pen.size = [this.controller.penWidth, this.controller.penLength];
+            this.toolbarMenu.style.color = `rgb(${this.controller.penRed}, ${this.controller.penGreen}, 
+                ${this.controller.penBlue})`;
 
             // Update background colors
             this.canvas.style.backgroundColor = `rgb(${this.controller.bgRed}, ${this.controller.bgGreen}, 

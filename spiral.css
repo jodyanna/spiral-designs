@@ -3,6 +3,14 @@
 /****************************** Spiral Designs v2 ********************************/
 /*********************************************************************************/
 
+html {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 html, body {
     overflow: hidden;
 
@@ -25,19 +33,50 @@ html, body {
     height: 100%;
 }
 
-
 h2, h3 {
-    margin: 0.5em 1em;
+    margin: 0.5em 0 0 0;
     padding: 0;
 }
+h2 {
+    text-decoration: underline;
+}
 
+/* Tutorial */
+
+.tutorial {
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    display: flex;
+    display: -webkit-flex;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 250px;
+    height: 100%;
+
+    margin: 0;
+    padding: 1em;
+
+    border: white dashed 3px;
+}
+
+.tutorial-text {
+    color: white;
+    text-align: center;
+    font-size: 2em;
+}
+
+
+/* Toolbar */
 .toolbar {
     position: fixed;
     top: 0;
     right: 0;
-    z-index: 4;
 
-    width: 200px;
+    width: 250px;
     height: 100%;
 
     margin: 0;
@@ -50,46 +89,71 @@ h2, h3 {
 
     position: fixed;
     top: 0;
-    right: 0;
+    right: 10px;
 
     display: flex;
     display: -webkit-flex;
 
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
 
     width: 230px;
     height: 100%;
 
-    padding: 0;
     margin: 0;
+    padding: 0.2em;
 
     color: white;
     background-color: black;
+}
 
-    animation-duration: 1s;
-
+.input-container {
+    width: 100%;
 }
 
 
 /* Slider Inputs */
-.input-container {
-    width: 64px;
-    height: 64px;
+.slider-container {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
 
-    margin: 0.25em 0;
+    align-items: center;
+    justify-content: space-evenly;
+
+    width: 100%;
+    height: 28px;
+
+    margin: 0.5em 0;
+
+    background-color: #3e3e3e;
+    color: white;
+
+    border-radius: 10px;
 }
 
-.slider-container {
-    background-color: palevioletred;
+.red {
+    background-color: #ff0000;
+    color: white;
+}
+.green {
+    background-color: #00ff00;
+    color: white;
+}
+.blue {
+    background-color: #0000ff;
+    color: white;
 }
 
 .slider {
     position: relative;
 
-    width: 148px;
+    width: 140px;
+
+    margin-left: 0.5em;
 }
+
 
 /* Hide, Show Elements */
 .visible {
@@ -100,4 +164,25 @@ h2, h3 {
     opacity: 0;
     transition: opacity 500ms;
 }
+
+
+/* Blinking Animation */
+/* https://stackoverflow.com/questions/13955163 */
+.blink {
+    animation: blink-animation 700ms steps(5, start) infinite;
+    -webkit-animation: blink-animation 700ms steps(5, start) infinite;
+}
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+@-webkit-keyframes blink-animation {
+    to {
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+
 
