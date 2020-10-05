@@ -41,35 +41,6 @@ h2 {
     text-decoration: underline;
 }
 
-/* Tutorial */
-
-.tutorial {
-    position: fixed;
-    top: 0;
-    right: 0;
-
-    display: flex;
-    display: -webkit-flex;
-
-    justify-content: center;
-    align-items: center;
-
-    width: 250px;
-    height: 100%;
-
-    margin: 0;
-    padding: 1em;
-
-    border: white dashed 3px;
-}
-
-.tutorial-text {
-    color: white;
-    text-align: center;
-    font-size: 2em;
-}
-
-
 /* Toolbar */
 .toolbar {
     position: fixed;
@@ -83,13 +54,21 @@ h2 {
     padding: 0;
 }
 
+.toolbar-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+
+    display: block;
+}
+
 
 .toolbar-menu {
     overflow: auto;
 
     position: fixed;
     top: 0;
-    right: 10px;
+    right: 0;
 
     display: flex;
     display: -webkit-flex;
@@ -112,6 +91,31 @@ h2 {
     width: 100%;
 }
 
+/* Tutorial */
+.tutorial {
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 250px;
+    height: 100%;
+
+    margin: 0;
+    padding: 1em;
+
+    border: white dashed 3px;
+}
+
+.tutorial-text {
+    color: white;
+    text-align: center;
+    font-size: 2em;
+}
 
 /* Slider Inputs */
 .slider-container {
@@ -167,7 +171,7 @@ h2 {
 
 
 /* Blinking Animation */
-/* https://stackoverflow.com/questions/13955163 */
+/* https://stackoverflow.com/questions/13955163*/
 .blink {
     animation: blink-animation 700ms steps(5, start) infinite;
     -webkit-animation: blink-animation 700ms steps(5, start) infinite;
@@ -186,3 +190,14 @@ h2 {
 }
 
 
+/* Desktop Support and Features */
+@media (pointer: fine) {
+    .toolbar-button {
+        display: none;
+    }
+
+    .tutorial {
+        display: flex;
+        display: -webkit-flex;
+    }
+}

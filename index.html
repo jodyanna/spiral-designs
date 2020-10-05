@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>JS 8-bit Spiral</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="spiral.css">
 </head>
 <body>
     <div id="spiral-designs"></div>
 
     <div class="toolbar" id="toolbar">
+        <button class="toolbar-button" id="toolbar-button">
+            <span class="material-icons">list</span>
+        </button>
         <div class="tutorial blink" id="tutorial">
             <span class="tutorial-text">Move cursor here to show toolbar</span>
         </div>
@@ -75,7 +80,6 @@
         </div>
     </div>
 
-
     <script src="spiral.js"></script>
     <script>
         const toggleMenu = () => {
@@ -90,6 +94,8 @@
         document.getElementById("toolbar").addEventListener("mouseenter", toggleMenu);
         document.getElementById("toolbar").addEventListener("mouseleave", toggleMenu);
         document.getElementById("toolbar").addEventListener("mouseenter", removeTutorial);
+        document.getElementById("toolbar-button").addEventListener("click", toggleMenu);
+
     </script>
 </body>
 </html>

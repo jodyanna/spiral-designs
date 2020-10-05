@@ -2,7 +2,7 @@
 A simple web application for displaying an arithmetic spiral. 
 
 # Technologies
-- ES6 (JavaScript)
+- JavaScript
 - CSS 3
 - HTML 5
 
