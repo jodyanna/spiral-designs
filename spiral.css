@@ -58,9 +58,19 @@ h2 {
     position: fixed;
     top: 10px;
     right: 10px;
+    z-index: 1;
 
     display: block;
+
+    width: 48px;
+    height: 48px;
+
+    margin: 0;
+    padding: 0;
+
+    cursor: pointer;
 }
+
 
 
 .toolbar-menu {
@@ -178,13 +188,11 @@ h2 {
 }
 @keyframes blink-animation {
     to {
-        visibility: hidden;
         opacity: 0;
     }
 }
 @-webkit-keyframes blink-animation {
     to {
-        visibility: hidden;
         opacity: 0;
     }
 }

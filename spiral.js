@@ -20,7 +20,7 @@ class SpiralDesign {
     }
 
     /***************************** Create Canvas *****************************/
-    createCanvas = () => {
+    createCanvas() {
         const div = document.getElementById("spiral-designs");
         const canvas = document.createElement("canvas");
         canvas.id = "spiral-design-canvas";
@@ -32,7 +32,7 @@ class SpiralDesign {
     }
 
     /***************************** Animation Loop *****************************/
-    loop = () => {
+    loop() {
         let frameCount = 0;
         const frameRateDivisor = 6; // Sets frame rate to 10fps.
 
@@ -48,7 +48,7 @@ class SpiralDesign {
     };
 
     /***************************** Render Spiral *****************************/
-    renderSpiral = (frameCount, speed) => {
+    renderSpiral(frameCount, speed) {
         this.spiral.createCoordinates(frameCount, speed);
         let l = this.spiral.coordinates.length;
 
@@ -80,7 +80,7 @@ class SpiralDesign {
     }
 
     /***************************** Clear Canvas *****************************/
-    clearCanvas = () => {
+    clearCanvas() {
         this.contex.globalCompositeOperation = 'destination-out';
         this.contex.fillStyle = "rgb(0, 0, 0)";
         this.contex.fillRect(0, 0, this.canvas.width, this.canvas.height);
@@ -96,7 +96,7 @@ class Controller {
     }
 
     /***************************** Update Controller *****************************/
-    update = () => {
+    update() {
         this.penRed = document.getElementById("spiral-red").value;
         this.penGreen = document.getElementById("spiral-green").value;
         this.penBlue = document.getElementById("spiral-blue").value;
@@ -160,7 +160,7 @@ class Spiral {
     }
 
     /************************ Calculate Spiral Coordinates ************************/
-    createCoordinates = (frameCount, frameRateDivisor) => {
+    createCoordinates(frameCount, frameRateDivisor) {
         this.coordinates = [];
         this.theta = 1; // Degrees
 
