@@ -11,11 +11,11 @@
     <div id="spiral-designs"></div>
 
     <div class="toolbar" id="toolbar">
-        <button class="toolbar-button" id="toolbar-button">
-            <span class="material-icons">list</span>
+        <button class="toolbar-button" id="toolbar-button" onclick="void(0)">
+            <span class="material-icons icon" onclick="void(0)">list</span>
         </button>
         <div class="tutorial blink" id="tutorial">
-            <span class="tutorial-text">Move cursor here to show toolbar</span>
+            <span class="tutorial-text" style="width: 36px; height: 36px">Move cursor here to show toolbar</span>
         </div>
         <div class="toolbar-menu invisible" id="toolbar-menu">
             <h2>Spiral</h2>
@@ -88,13 +88,15 @@
         }
         const removeTutorial = () => {
             document.getElementById("tutorial").classList.toggle("invisible");
+            document.getElementById("tutorial").classList.toggle("blink");
             document.getElementById("toolbar").removeEventListener("mouseenter", removeTutorial);
         }
 
         document.getElementById("toolbar").addEventListener("mouseenter", toggleMenu);
         document.getElementById("toolbar").addEventListener("mouseleave", toggleMenu);
         document.getElementById("toolbar").addEventListener("mouseenter", removeTutorial);
-        document.getElementById("toolbar-button").addEventListener("click", toggleMenu);
+        document.getElementById("toolbar-button").addEventListener("click", toggleMenu, true);
+        document.getElementById("toolbar-button").addEventListener("touchstart", toggleMenu, true);
 
     </script>
 </body>
