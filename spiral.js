@@ -41,15 +41,15 @@ class SpiralDesign {
             requestAnimationFrame(animate);
             if((frameCount % frameRateDivisor) === 0) {
                 this.clearCanvas();
-                this.renderSpiral(frameCount, frameRateDivisor);
+                this.renderSpiral(frameCount / frameRateDivisor);
             }
         }
         animate();
     };
 
     /***************************** Render Spiral *****************************/
-    renderSpiral(frameCount, speed) {
-        this.spiral.createCoordinates(frameCount, speed);
+    renderSpiral(frameCount) {
+        this.spiral.createCoordinates(frameCount);
         let l = this.spiral.coordinates.length;
 
         for(let i = 0; i < l; i++) {
@@ -160,7 +160,7 @@ class Spiral {
     }
 
     /************************ Calculate Spiral Coordinates ************************/
-    createCoordinates(frameCount, frameRateDivisor) {
+    createCoordinates(frameCount) {
         this.coordinates = [];
         this.theta = 1; // Degrees
 
@@ -169,10 +169,8 @@ class Spiral {
             // Convert theta from degrees to radians
             const thetaRadians = (this.theta * (Math.PI / this.halfCircle));
 
-            const x = (this.width * thetaRadians) * (Math.cos(thetaRadians - (frameCount / frameRateDivisor))) +
-              this.offsetWidth;
-            const y = (this.width * thetaRadians) * (Math.sin(thetaRadians - (frameCount / frameRateDivisor))) +
-              this.offsetHeight;
+            const x = (this.width * thetaRadians) * (Math.cos(thetaRadians - frameCount)) + this.offsetWidth;
+            const y = (this.width * thetaRadians) * (Math.sin(thetaRadians - frameCount)) + this.offsetHeight;
 
             const coordinates = [x.toFixed(4), y.toFixed(4)];
             this.coordinates.push(coordinates);
@@ -224,6 +222,6 @@ window.addEventListener("load", function () {
         rAF();
         spiral.loop();
     } else {
-        document.getElementsByTagName("body")[0].innerHTML = "Canvas not supported, this app requires it.";
+        document.getElementById("spiral-designs").innerHTML = "Canvas not supported, this app requires it.";
     }
 });

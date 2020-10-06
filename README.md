@@ -10,17 +10,6 @@ A simple web application for displaying an arithmetic spiral.
 Manipulate the spiral by adjusting the range sliders. 
 All settings are updated in real time at 10 frames per second. 
 
-# Installation
-This app is self rendered by the UI class included in spiral.js.
-Follow these steps to add Spiral Designs to your web page:
-
-1. Download spiral.js and spiral.css and add them to your web page's 
-directory
-2. Create a div element with an id of "spiral-designs"
-3. Link the spiral.css stylesheet
-4. Add a script element with the path to spiral.js as the src.
-
-Application dimensions: 700px width, 448px height
 
 # TODO
 - Option to animate pen and/or background colors for rainbow effect
