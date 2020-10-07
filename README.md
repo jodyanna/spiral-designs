@@ -38,7 +38,7 @@ pairs together.
 All toolbar settings are updated before each point is rendered allowing for fluid
 adjustment of each parameter in real time.
 
-And that's pretty all there is to it!
+And that's pretty much all there is to it!
 
 
 # TODO
