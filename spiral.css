@@ -37,6 +37,7 @@ h2, h3 {
     margin: 0.5em 0 0 0;
     padding: 0;
 }
+
 h2 {
     text-decoration: underline;
 }
@@ -70,8 +71,6 @@ h2 {
 
     cursor: pointer;
 }
-
-
 
 .toolbar-menu {
     overflow: auto;

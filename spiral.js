@@ -209,9 +209,7 @@ const rAF = () => {
 
 
 /******************************** Check Canvas Support *********************************/
-const isCanvasSupport = () => {
-    return document.createElement("canvas").getContext
-}
+const isCanvasSupport = () => document.createElement("canvas").getContext
 
 
 /****************************** Event Listeners ********************************/
